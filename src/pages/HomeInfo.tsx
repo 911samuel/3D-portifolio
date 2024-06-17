@@ -24,7 +24,7 @@ const InfoBox = ({ text, link, btnText }: InfoBoxProps) => (
 const renderContent: { [key: number]: JSX.Element } = {
   1: (
     <h1 className="sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5">
-      Hi, I am <span className="font-semibold">Samuel</span>👋
+      Hi, I am <span className="font-semibold">Samuel </span>👋
       <br />A software developer from Rwanda
     </h1>
   ),
