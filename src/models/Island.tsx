@@ -147,8 +147,7 @@ export function Island({
       canvas.removeEventListener("touchend", handleTouchEnd);
       canvas.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [gl]);
-
+  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
   useFrame(() => {
     if (!islandRef.current) return;
 
