@@ -3,6 +3,8 @@ import emailjs from "@emailjs/browser";
 import { Canvas } from "@react-three/fiber";
 import Fox from "../models/Fox";
 import Loader from "../components/Loader";
+import Alert from "../components/Alert";
+import useAlert from "../hooks/UseALert";
 
 interface FormState {
   name: string;
@@ -19,6 +21,7 @@ function Contact() {
     message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
+  const { alert, showAlert, hideAlert } = useAlert();
 
   const handleChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -40,7 +43,13 @@ function Contact() {
         .sendForm(serviceID, templateID, formRef.current, publicID)
         .then(() => {
           setIsLoading(false);
+          showAlert({
+            show: true,
+            text: "Thank you for your message 😃",
+            type: "success",
+          });
           setTimeout(() => {
+            hideAlert();
             setCurrentAnimation('idle')
             setForm({ name: '', email: '', message: '' });
           }, 3000);
@@ -49,11 +58,17 @@ function Contact() {
           console.log(error);
           setIsLoading(false);
           setCurrentAnimation("idle");
+          showAlert({
+            show: true,
+            text: "I didn't receive your message 😢",
+            type: "danger",
+          });
         });
     }
   };
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
+      {alert.show && <Alert {...alert} />}
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in Touch</h1>
         <form
@@ -121,7 +136,7 @@ function Contact() {
             position: [0, 0, 5],
             fov: 75,
             near: 0.1,
-            far: 1000
+            far: 1000,
           }}
         >
           <directionalLight intensity={2.5} position={[0, 0, 1]} />
