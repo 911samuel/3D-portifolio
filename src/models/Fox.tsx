@@ -18,7 +18,7 @@ const Fox: React.FC<FoxProps> = ({ currentAnimation, ...props }) => {
     Object.values(actions).forEach((action) => action?.stop());
 
     if (actions[currentAnimation]) {
-      actions[currentAnimation].play();
+      actions[currentAnimation]?.play();
     }
   }, [actions, currentAnimation]);
 
