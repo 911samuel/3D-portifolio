@@ -3,11 +3,11 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import sakura from "../assets/sakura.mp3";
 import { soundoff, soundon } from "../assets/icons";
 import Island from "../models/Island";
-import { Loader } from "@react-three/drei";
 import Sky from "../models/Sky";
 import Plane from "../models/Plane";
 import Bird from "../models/Bird";
 import HomeInfo from "./HomeInfo";
+import Loader from "../components/Loader";
 
 const Home: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(new Audio(sakura));
@@ -113,7 +113,7 @@ const Home: React.FC = () => {
           className="w-10 h-10 cursor-pointer object-contain"
         />
       </div>
-    </section>
+    </section> 
   );
 };
 
